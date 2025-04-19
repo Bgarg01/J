@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Good Luck Jar 🍀✨</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffe5ec, #e0f7fa);
+      padding: 2rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #4a4a4a;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    select {
+      padding: 0.5rem;
+      font-size: 1.1rem;
+      border: 1px solid #ccc;
+      margin-bottom: 2rem;
+    }
+
+    .floating-emoji {
+      position: absolute;
+      font-size: 3rem;
+      animation: floatEmoji 10s infinite linear;
+      opacity: 0.8;
+    }
+
+    @keyframes floatEmoji {
+      0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(100vw) translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    .note-container {
+      font-size: 1.5rem;
+      color: #555;
+      margin-top: 2rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Your Good Luck Jar 🍀✨</h1>
+  <p>Feeling something? Your personalized good vibes are here! 💖</p>
+  
+  <select id="emotionSelect" onchange="generateNote()">
+    <option value="">-- Select an Emotion --</option>
+    <option value="nervous">Feeling Nervous 😬</option>
+    <option value="miss">Missing Someone 💭</option>
+    <option value="firstday">First Day Jitters 😅</option>
+    <option value="smile">Need a Smile? 😁</option>
+    <option value="overwhelmed">Overwhelmed? 😰</option>
+    <option value="hug">Need a Hug? 🤗</option>
+    <option value="confidence">Low Confidence? 💪</option>
+    <option value="lost">Feeling Lost? 🧭</option>
+    <option value="lonely">Feeling Lonely 💔</option>
+    <option value="excited">Excited but Anxious 😆</option>
+  </select>
+
+  <div id="noteContainer" class="note-container"></div>
+
+  <script>
+    const emotionNotes = {
+      nervous: [
+        "Take a deep breath, jaan. You’ve got this, always have, always will. 💖",
+        "Remember how far you've come. Trust yourself, I trust you. 🌟",
+        "It’s okay to be nervous—it means you care. You’re going to do amazing. ✨"
+      ],
+      miss: [
+        "You're on my mind more than you know. Always here, always yours. 💕",
+        "Distance means so little when someone means so much. I'm just a heartbeat away. 💫",
+        "Even miles apart, you're never alone. I'm right there in your pocket, jaan. 🌙"
+      ],
+      firstday: [
+        "You are more ready than you feel. Own the room like you always do! 👑",
+        "Everyone starts somewhere—and your somewhere starts with stardust. ✨",
+        "You were made for this. First days become best days, you'll see. 🚀"
+      ],
+      smile: [
+        "Here's your reminder to smile like the world is yours—because it is. 😄",
+        "You’ve got the kind of smile that makes clouds jealous. 🌥️",
+        "You’re my reason to smile. Let this remind you of how amazing you are. 💖"
+      ],
+      overwhelmed: [
+        "One breath, one step, one thing at a time. You’ve got this, baby. 🐾",
+        "It’s okay to pause. You don’t have to do it all at once. 🕰️",
+        "Even storms pass. You are calm in chaos and light in the dark. 🌩️🌈"
+      ],
+      hug: [
+        "Sending you a warm, snuggly hug through the screen. Feel it? That’s me. 🤗",
+        "Close your eyes and imagine us holding hands. You’re safe. 👐",
+        "This note = one tight hug + all my love. ❤️"
+      ],
+      confidence: [
+        "You are powerful, smart, and unstoppable. Believe it, jaan. 💪",
+        "There’s nothing you can’t handle. You’ve proved it over and over. 🔥",
+        "Confidence looks good on you. Put it on and slay today. 👑"
+      ],
+      lost: [
+        "Sometimes not knowing is where the magic begins. Keep going. 🌟",
+        "Every step forward, even unsure ones, are part of your story. 📖",
+        "You’re never truly lost when your heart knows the way. 💖"
+      ],
+      lonely: [
+        "You are deeply loved. My heart is always with you. ❤️",
+        "Even alone, you shine so bright. I see you. I love you. 🌟",
+        "Wrap this note around you like a blanket of love. 🛋️💖"
+      ],
+      excited: [
+        "Butterflies mean growth. You’re blooming beautifully. 🦋",
+        "New beginnings can be scary—but you were born to start things. 🚀",
+        "Channel that excitement into magic. You're unstoppable. 🌠"
+      ]
+    };
+
+    // Function to display the corresponding note
+    function generateNote() {
+      const emotion = document.getElementById("emotionSelect").value;
+      const noteContainer = document.getElementById("noteContainer");
+
+      if (emotion) {
+        const notes = emotionNotes[emotion];
+        const randomNote = notes[Math.floor(Math.random() * notes.length)];
+        noteContainer.textContent = randomNote;
+      } else {
+        noteContainer.textContent = '';
+      }
+    }
+
+    // Adding floating emojis to the page
+    const emojis = ["🍀", "✨", "🌸", "💖", "🌟", "💭", "🌈", "🎉"];
+    let numEmojis = 15; // How many emojis you want to float on screen
+
+    for (let i = 0; i < numEmojis; i++) {
+      let emoji = emojis[Math.floor(Math.random() * emojis.length)];
+      let emojiDiv = document.createElement("div");
+      emojiDiv.className = "floating-emoji";
+      emojiDiv.innerHTML = emoji;
+
+      // Set random position
+      emojiDiv.style.top = Math.random() * 100 + "vh"; // Random height
+      emojiDiv.style.left = Math.random() * 100 + "vw"; // Random width
+
+      document.body.appendChild(emojiDiv);
+    }
+  </script>
+</body>
+</html>
